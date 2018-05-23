@@ -1,6 +1,6 @@
 import { IO, SELF_CANCELLATION } from './symbols'
 import { delay as delayUtil, is, identity, check, createSetContextWarning } from './utils'
-import { takeEveryHelper, takeLatestHelper, takeLeadingHelper, throttleHelper, retryHelper } from './sagaHelpers'
+import { debounceHelper, takeEveryHelper, takeLatestHelper, takeLeadingHelper, throttleHelper, retryHelper } from './sagaHelpers'
 
 const TAKE = 'TAKE'
 const PUT = 'PUT'
@@ -206,6 +206,10 @@ export function setContext(props) {
   }
 
   return effect(SET_CONTEXT, props)
+}
+
+export function debounce(delayLength, pattern, worker, ...args) {
+  return fork(debounceHelper, delayLength, pattern, worker, ...args)
 }
 
 export function takeEvery(patternOrChannel, worker, ...args) {

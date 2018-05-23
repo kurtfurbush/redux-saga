@@ -24,4 +24,5 @@ export {
   takeLeading,
   throttle,
   delay,
+  debounce,
 } from './internal/io'
